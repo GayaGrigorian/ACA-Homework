@@ -81,7 +81,7 @@ function palindrom(string) {
 //   9. * Create a custom Array.prototype.myPop should work similarly to
 // Array.prototype.pop
 
-Array.prototype.myPop=function (arr) {
+const Array.prototype.myPop=function (arr) {
     let newArr= [];
     for (let i=0; i< arr.length; i++){
         if (i !== arr.length-1){
