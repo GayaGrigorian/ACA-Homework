@@ -75,3 +75,57 @@ undefined
 res1.then (function(result) {
     console.log (result)
 })
+
+
+// 8.First research some info about fetch API. After it write a program to fetch the posts data
+// from the following URL https://jsonplaceholder.typicode.com/users, and show it to the
+// document.
+
+//html file
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+</body>
+    <script src="./script.js"></script>
+</html>
+
+//script file
+function fetchData(){
+    fetch ("https://jsonplaceholder.typicode.com/users")
+    .then (response=>{
+      if(!response.ok){
+        throw Error ("ERROR"); 
+      }
+       return response.json();
+    })
+    .then(data => {
+       console.log (data);
+       const html = data.map(user =>{
+          return`
+          <div class="user">
+            <p>name:${user.name}</p>
+            <p>username:${user.username}</p>
+            <p>email:${user.email}</p>
+            <p>address:${user.address.street}</p>
+            <p>company:${user.company.name}</p>
+          </div>
+          `
+       }).join ("");
+       console.log(html);
+       document
+         .querySelector("#app")
+         .insertAdjacentHTML ("afterbegin", html)
+    })
+    .catch(error => {
+      console.log (error)
+    });
+  }
+  
+  fetchData()
