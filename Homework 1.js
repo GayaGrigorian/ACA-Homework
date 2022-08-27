@@ -43,3 +43,35 @@ class Car1 extends Car {
 let car= new Car1("Mercedes")
 car.name
 car.run (5) 
+
+// 7.Write a function which returns a Promise object that is resolved with the string 'Hooray!!!
+// She said "Yes"!', if true is passed, resolved with the string 'Oh no, she said
+// "No".' if false is passed, and rejected with an error 'Wrong parameter is
+// passed! Ask her again.', if the passed value type is not boolean.
+
+function askHer(param) {
+  return new Promise(function(resolve, reject) {
+    if (param === true) {
+      resolve('Hooray!!! She said "Yes"!')
+    }
+    if (param === false) {
+      resolve('Oh no, she said "No".')
+    }
+    if (typeOf(param) != "boolean") {
+      reject(new Error('Wrong parameter is passed! Ask her again.'))
+    }
+  })
+}
+
+const res= askHer(true)
+
+res.then(function(result) {
+  console.log (result)
+})
+
+const res1 = askHer (false)
+undefined
+
+res1.then (function(result) {
+    console.log (result)
+})
